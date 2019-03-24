@@ -1,0 +1,73 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_static admin_list humanize %}
+
+{% block result_list %}
+
+<div class="results">
+	<table id="result_list" style="border: 1px #ccc solid; margin-bottom: 20px;">
+		<thead>
+			<tr>
+				<th rowspan="2" style="border-right: 1px #ccc solid; padding: 3px;">category</th>
+				{% for b in bundles %}
+				<th colspan="3" style="width:720px; text-align: right; border-right: 1px #ccc solid; padding: 3px;">
+					<h2>{{ b }}</h2>
+					Not budgeted in previous month: {{ b.previous_bundle.available_to_budget|intcomma }}<br/>
+					overspent in previous month: {{ b.previous_bundle.overspending|intcomma }}<br/>
+					Income: {{ b.income|intcomma }}<br/>
+					budgeted: {{ b.budgeted|intcomma }}<br/>
+					<!-- Spent: {{ b.spent|intcomma }}<br/> -->
+					available: {{ b.available_to_budget|intcomma }}
+				</th>
+				{% endfor %}
+			</tr>
+			<tr>
+				{% for b in bundles %}
+				<th style='width:240px; text-align: right; padding: 3px;'>
+					Budgeted<br/>{{ b.budgeted|intcomma }}
+				</th>
+				<th style='width:240px; text-align: right; padding: 3px;'>
+					Spent<br/>{{ b.spent|intcomma }}
+				</th>
+				<th style='width:240px; text-align: right; border-right: 1px #ccc solid; padding: 3px;'>
+					Balance<br/>{% if b.balance > -1 %}{{ b.balance|intcomma }}{% else %}<span style="background-color: #F8E4E1; color: #9D4A47;">{{ b.balance|intcomma }}</span>{% endif %}
+				</th>
+				{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for row in table %}
+			{% ifchanged row.0.parent.title %}
+			<tr>
+				<td style='text-align: right; width:240px; padding: 3px; border-right: 1px #ccc solid;'><h2>{{ row.0.parent.title }}</h2></td>
+				{% for b in row|slice:"1:" %}
+				<td style='text-align: right; width:240px; padding: 3px; border-right: 1px #ccc solid;'>
+					<h2 style='text-align: right;'>{{ b.parent_budgeted }}</h2>
+				</td>
+				<td style='text-align: right; width:240px; padding: 3px; border-right: 1px #ccc solid;'>
+					<h2 style='text-align: right;'>{{ b.parent_outflows }}</h2>
+				</td>
+				<td style='text-align: right; width:240px; padding: 3px; border-right: 1px #ccc solid;'>
+					<h2 style='text-align: right;'>{{ b.parent_balance }}</h2>
+				</td>
+				{% endfor %}
+			</tr>
+			{% endifchanged %}
+			<tr>
+				<td style="border-right: 1px #ccc solid;">{{ row.0.title }}</td>
+				{% for b in row|slice:"1:" %}
+					<td style='text-align: right; width:240px; padding: 3px; border-right: 1px #ccc solid;'><a href='{% url "admin:moneybook_budget_change" b.pk %}'>{{ b.budgeted|intcomma }}</a></td>
+					<td style='text-align: right; width:240px; padding: 3px; border-right: 1px #ccc solid;'><a href='{% url "admin:moneybook_transaction_changelist" %}?category__id__exact={{ c.pk }}&expensed_at__gte={{ b.budget_bundle.date_from|date:"Y-m-d" }}&expensed_at__lte={{ b.budget_bundle.date_to|date:"Y-m-d" }}'>{{ b.outflows|intcomma }}</a></td>
+					<td style='text-align: right; width:240px; padding: 3px; border-right: 1px #ccc solid;'>{% if b.balance > -1 %}{{ b.balance|intcomma }}{% else %}<span style="background-color: #F8E4E1; color: #9D4A47;">{{ b.balance|intcomma }}</span>
+						{% if b.overspending_in_budget %} -> {% endif %}
+					{% endif %}</td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% if action_form and actions_on_top and cl.full_result_count %}{% admin_actions %}{% endif %}
+{% result_list cl %}
+{% if action_form and actions_on_bottom and cl.full_result_count %}{% admin_actions %}{% endif %}
+
+{% endblock %}

@@ -1,0 +1,44 @@
+[
+{
+  "model": "moneybook.mastercategory",
+  "pk": 1,
+  "fields": {
+    "title": "Income"
+  }
+},
+{
+  "model": "moneybook.mastercategory",
+  "pk": 2,
+  "fields": {
+    "title": "Everyday Expenses"
+  }
+},
+{
+  "model": "moneybook.mastercategory",
+  "pk": 3,
+  "fields": {
+    "title": "Giving"
+  }
+},
+{
+  "model": "moneybook.mastercategory",
+  "pk": 4,
+  "fields": {
+    "title": "Rainy Day Funds"
+  }
+},
+{
+  "model": "moneybook.mastercategory",
+  "pk": 5,
+  "fields": {
+    "title": "Monthly Bills"
+  }
+},
+{
+  "model": "moneybook.mastercategory",
+  "pk": 6,
+  "fields": {
+    "title": "Pre-YNAB Debt"
+  }
+}
+]

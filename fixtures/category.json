@@ -1,0 +1,354 @@
+[
+{
+  "model": "moneybook.category",
+  "pk": 65,
+  "fields": {
+    "full_title": "Income:Available this month",
+    "title": "Available this month",
+    "is_builtin": true,
+    "order": 0,
+    "parent": 1
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 66,
+  "fields": {
+    "full_title": "Everyday Expenses:Groceries/Restaurants/Household goods",
+    "title": "Groceries/Restaurants/Household goods",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 2
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 67,
+  "fields": {
+    "full_title": "Everyday Expenses:Medical",
+    "title": "Medical",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 2
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 68,
+  "fields": {
+    "full_title": "Giving:Charitable",
+    "title": "Charitable",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 3
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 69,
+  "fields": {
+    "full_title": "Rainy Day Funds:Electronics",
+    "title": "Electronics",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 4
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 70,
+  "fields": {
+    "full_title": "Rainy Day Funds:Birthdays",
+    "title": "Birthdays",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 4
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 71,
+  "fields": {
+    "full_title": "Giving:Private Church",
+    "title": "Private Church",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 3
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 72,
+  "fields": {
+    "full_title": "Rainy Day Funds:Car Tax",
+    "title": "Car Tax",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 4
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 73,
+  "fields": {
+    "full_title": "Monthly Bills:Internet",
+    "title": "Internet",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 74,
+  "fields": {
+    "full_title": "Monthly Bills:Phone",
+    "title": "Phone",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 75,
+  "fields": {
+    "full_title": "Giving:Mission",
+    "title": "Mission",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 3
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 76,
+  "fields": {
+    "full_title": "Monthly Bills:Life Insurance",
+    "title": "Life Insurance",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 77,
+  "fields": {
+    "full_title": "Giving:Parents",
+    "title": "Parents",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 3
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 78,
+  "fields": {
+    "full_title": "Monthly Bills:Rent/Mortgage",
+    "title": "Rent/Mortgage",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 79,
+  "fields": {
+    "full_title": "Monthly Bills:Health Insurance(HY)",
+    "title": "Health Insurance(HY)",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 80,
+  "fields": {
+    "full_title": "Monthly Bills:Health Insurance(MEI)",
+    "title": "Health Insurance(MEI)",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 81,
+  "fields": {
+    "full_title": "Monthly Bills:Health Insurance(TK)",
+    "title": "Health Insurance(TK)",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 82,
+  "fields": {
+    "full_title": "Monthly Bills:Gas",
+    "title": "Gas",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 83,
+  "fields": {
+    "full_title": "Rainy Day Funds:Family",
+    "title": "Family",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 4
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 84,
+  "fields": {
+    "full_title": "Monthly Bills:Health Insurance(MOM)",
+    "title": "Health Insurance(MOM)",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 85,
+  "fields": {
+    "full_title": "Giving:Neighborhood",
+    "title": "Neighborhood",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 3
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 86,
+  "fields": {
+    "full_title": "Monthly Bills:Life Insurance(MOM)",
+    "title": "Life Insurance(MOM)",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 87,
+  "fields": {
+    "full_title": "Pre-YNAB Debt:SK-FAMILY",
+    "title": "SK-FAMILY",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 6
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 88,
+  "fields": {
+    "full_title": "Everyday Expenses:Culture/Leisure",
+    "title": "Culture/Leisure",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 2
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 89,
+  "fields": {
+    "full_title": "Rainy Day Funds:Home Maintenance",
+    "title": "Home Maintenance",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 4
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 90,
+  "fields": {
+    "full_title": "Monthly Bills:Baby-Sitting",
+    "title": "Baby-Sitting",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 91,
+  "fields": {
+    "full_title": "Everyday Expenses:Fuel/Transportation",
+    "title": "Fuel/Transportation",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 2
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 92,
+  "fields": {
+    "full_title": "Everyday Expenses:Clothing/Beauty",
+    "title": "Clothing/Beauty",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 2
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 93,
+  "fields": {
+    "full_title": "Monthly Bills:bidet",
+    "title": "bidet",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 94,
+  "fields": {
+    "full_title": "Monthly Bills:Apt.Maintenance",
+    "title": "Apt.Maintenance",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 5
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 95,
+  "fields": {
+    "full_title": "Giving:Tithing",
+    "title": "Tithing",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 3
+  }
+},
+{
+  "model": "moneybook.category",
+  "pk": 96,
+  "fields": {
+    "full_title": "Pre-YNAB Debt:WOORICARD",
+    "title": "WOORICARD",
+    "is_builtin": false,
+    "order": 0,
+    "parent": 6
+  }
+}
+]
