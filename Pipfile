@@ -6,6 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+pinax-amazing = "*"
+django-lazy-tags = "*"
+django-lazy-tag = "*"
 
 [requires]
 python_version = "3.7"

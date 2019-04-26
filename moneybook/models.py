@@ -9,6 +9,7 @@ from django.utils import timezone
 from dateutil.relativedelta import relativedelta
 from datetime import timedelta
 from django.urls import reverse
+from django.dispatch import receiver
 
 
 # class CategoryManager(models.Manager):
@@ -132,7 +133,8 @@ class BudgetBundle(models.Model):
 
     def get_transaction_queryset(self):
         return Transaction.objects.filter(
-            expensed_at__range=(self.date_from, self.date_to)
+            expensed_at__range=(self.date_from, self.date_to),
+            transfer__isnull=True,
         )
 
     # @property
@@ -268,7 +270,8 @@ class Budget(models.Model):
             t.inflow - t.outflow
             for t in Transaction.objects.filter(
                 category__parent=self.category.parent,
-                expensed_at__range=(self.budget_bundle.date_from, self.budget_bundle.date_to)).all()
+                expensed_at__range=(self.budget_bundle.date_from, self.budget_bundle.date_to),
+                transfer__isnull=True).all()
         )
 
     @property
@@ -326,6 +329,24 @@ class Account(models.Model):
             sum(t.inflow for t in self.transactions.all())
         )
 
+
+@receiver(models.signals.post_save, sender=Account)
+def create_initial_transaction(sender, instance, created, *args, **kwargs):
+    if created:
+        basecategory, _ = MasterCategory.objects.get_or_create(title='base')
+        incomecategory, _ = Category.objects.get_or_create(
+            title='Income',
+            full_title='Income',
+            is_builtin=True,
+            parent=basecategory)
+        Transaction.objects.create(
+            expensed_at=timezone.now(),
+            payee='Starting Balance',
+            account=instance,
+            category=incomecategory,
+            outflow=instance.first_balance if instance.first_balance < 0 else 0,
+            inflow=instance.first_balance if instance.first_balance >= 0 else 0,
+        )
 
 # class HookTest(models.Model):
 #     dummy = models.TextField()

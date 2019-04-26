@@ -1,18 +1,20 @@
 from django.template.response import TemplateResponse
-from rangefilter.filter import DateRangeFilter
+# from rangefilter.filter import DateRangeFilter
 from django.urls import reverse
 from django.contrib import admin
-from .models import Transaction, Account, Budget, Transfer, BudgetBundle, Category, BudgetBundle
 from django.conf.urls import url
 from django.urls import reverse
 from django.contrib.admin.views.main import ChangeList
 from django.db.models import Count, Sum
 from django.contrib.humanize.templatetags.humanize import intcomma, naturalday
 from django.utils.html import format_html
-from django_admin_multiple_choice_list_filter.list_filters import MultipleChoiceListFilter
-from admin_auto_filters.filters import AutocompleteFilter
+# from django_admin_multiple_choice_list_filter.list_filters import MultipleChoiceListFilter
+# from admin_auto_filters.filters import AutocompleteFilter
 
-# admin.site.register(HookTest)
+from .models import Transaction, Account, Budget, Transfer, BudgetBundle, Category, BudgetBundle, MasterCategory
+
+
+admin.site.register(MasterCategory)
 
 
 # class CategoryFilter(AutocompleteFilter):
@@ -63,24 +65,26 @@ class TransactionList(ChangeList):
         self.total_balance = self.total_inflow - self.total_outflow
 
 
-class AccountListFilter(MultipleChoiceListFilter):
-    title = 'Account'
-    parameter_name = 'account__in'
+# class AccountListFilter(MultipleChoiceListFilter):
+#     title = 'Account'
+#     parameter_name = 'account__in'
 
-    def lookups(self, request, model_admin):
-        return [
-            (acc.id, acc.title)
-            for acc in Account.objects.all()
-        ]
+#     def lookups(self, request, model_admin):
+#         return [
+#             (acc.id, acc.title)
+#             for acc in Account.objects.all()
+#         ]
 
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     date_hierarchy = 'expensed_at'
     ordering = ('-expensed_at', '-created_at')
-    list_filter = (('expensed_at', DateRangeFilter), AccountListFilter, 'category', 'payee')
-    list_display = ('account_link', 'humanize_expensed_at', 'category', 'payee', 'memo', 'humanize_outflow', 'humanize_inflow', 'humanize_balance', 'cleared')
-    list_display_links = ('humanize_expensed_at', )
+    # list_filter = (('expensed_at', DateRangeFilter), AccountListFilter, 'category', 'payee')
+    # list_filter = ('expensed_at', AccountListFilter, 'category', 'payee')
+    list_filter = ('expensed_at', 'account', 'category', 'payee')
+    list_display = ('account_link', 'expensed_at', 'category', 'payee', 'memo', 'humanize_outflow', 'humanize_inflow', 'humanize_balance', 'cleared')
+    list_display_links = ('expensed_at', )
     list_editable = (
         # 'payee',
         # 'memo',
@@ -169,12 +173,12 @@ class TransactionAdmin(admin.ModelAdmin):
         return format_html(f'<a href="{link_url}">{obj.account.title}</a>')
     account_link.short_description = 'Account'
 
-    def humanize_expensed_at(self, obj):
-        d = naturalday(obj.expensed_at).capitalize()
-        if d == 'Today':
-            return format_html(f'<b style="color:red;">{d}</b>')
-        return d
-    humanize_expensed_at.short_description = 'Date'
+    # def humanize_expensed_at(self, obj):
+    #     d = naturalday(obj.expensed_at).capitalize()
+    #     if d == 'Today':
+    #         return format_html(f'<b style="color:red;">{d}</b>')
+    #     return d
+    # humanize_expensed_at.short_description = 'Date'
 
     def humanize_outflow(self, obj):
         return intcomma(obj.outflow or '')
@@ -320,7 +324,11 @@ class BudgetAdmin(admin.ModelAdmin):
             for category in categories
             for bundle in bundles
         ]
-        table = [table[i:i+len(bundles)] for i in range(0, len(table), len(bundles))]
+        if len(bundles):
+            table = [table[i:i+len(bundles)] for i in range(0, len(table), len(bundles))]
+        else:
+            table = []
+
         for (c, r) in zip(categories, table):
             r.insert(0, c)
 
